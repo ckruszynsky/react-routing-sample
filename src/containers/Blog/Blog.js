@@ -2,27 +2,36 @@ import React, { Component } from "react";
 import styles from "./Blog.module.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
-import { Route, Link } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 
 class Blog extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className={styles.Blog}>
         <header className={styles.Nav}>
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <NavLink to="/" exact activeClassName={styles.activeNav}>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
+                  activeClassName={styles.activeNav}
+                  exact
+                  activeStyle={{
+                    color: "#fa923f",
+                    textDecoration: "underline"
+                  }}
                   to={{
                     pathname: "/new-post",
                     search: "?quick-submit=true"
                   }}
                 >
                   New Post
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>

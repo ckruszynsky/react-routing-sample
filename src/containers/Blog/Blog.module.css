@@ -13,11 +13,12 @@
 
 .Blog a {
   text-decoration: none;
-  color: inherit;
+  color: #fff;
 }
 
 .Blog a:hover,
-.Blog a:active {
+.Blog a:active,
+.Blog a.activeNav {
   color: #fa923f;
 }
 
