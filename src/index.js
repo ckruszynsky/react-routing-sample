@@ -1,16 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import axios from "axios";
 
-import "./styles.css";
+axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
+axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
-}
+axios.interceptors.request.use(
+  request => {
+    console.log(request);
+    // Edit request config
+    return request;
+  },
+  error => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+axios.interceptors.response.use(
+  response => {
+    console.log(response);
+    // Edit request config
+    return response;
+  },
+  error => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
+
+ReactDOM.render(<App />, document.getElementById("root"));
