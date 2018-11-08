@@ -5,3 +5,13 @@
   width: 90%;
   margin: auto;
 }
+
+.Posts a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.Posts a:hover,
+.Posts a:active {
+  color: #fff;
+}

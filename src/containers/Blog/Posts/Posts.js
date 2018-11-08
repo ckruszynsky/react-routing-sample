@@ -12,7 +12,7 @@ class Posts extends Component {
     axios
       .get("/posts")
       .then(response => {
-        const posts = response.data.slice(0, 9);
+        const posts = response.data.slice(0, 8);
         const updatedPosts = posts.map(post => {
           return {
             ...post,
@@ -29,7 +29,8 @@ class Posts extends Component {
   }
 
   postSelectedHandler = id => {
-    this.setState({ selectedPostId: id });
+    //this.setState({ selectedPostId: id });
+    this.props.history.push({ pathname: "/" + id });
   };
 
   render() {
@@ -38,7 +39,6 @@ class Posts extends Component {
       posts = this.state.posts.map(post => {
         return (
           <Post
-            key={post.id}
             title={post.title}
             author={post.author}
             clicked={() => this.postSelectedHandler(post.id)}
