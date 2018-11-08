@@ -12,7 +12,7 @@ class Posts extends Component {
     axios
       .get("/posts")
       .then(response => {
-        const posts = response.data.slice(0, 4);
+        const posts = response.data.slice(0, 9);
         const updatedPosts = posts.map(post => {
           return {
             ...post,
@@ -46,7 +46,11 @@ class Posts extends Component {
         );
       });
     }
-    return <section className={styles.Posts}>{posts}</section>;
+    return (
+      <section style={{ marginTop: "30px" }} className={styles.Posts}>
+        {posts}
+      </section>
+    );
   }
 }
 

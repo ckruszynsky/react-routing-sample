@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import styles from "./Blog.module.css";
 import Posts from "./Posts/Posts";
+import { Route } from "react-router-dom";
 class Blog extends Component {
   render() {
     return (
       <div className={styles.Blog}>
-        <header>
+        <header className={styles.Nav}>
           <nav>
             <ul>
               <li>
@@ -17,7 +18,8 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        <Posts />
+        <Route path="/" exact render={() => <Posts />} />
+        <Route path="/" exact render={() => <h1>Home</h1>} />
       </div>
     );
   }
