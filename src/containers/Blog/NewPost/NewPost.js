@@ -20,10 +20,17 @@ class NewPost extends Component {
       author: this.state.author
     };
     axios.post("/posts", data).then(response => {
-      this.setState({ submitted: true });
+      //this.setState({ submitted: true });
+
+      //allows the back button to come back to this page
+      //this.props.history.push("/posts");
+
+      //doesn't allow the back button bring you back
+      this.props.history.replace("/posts");
     });
   };
 
+  //alternate way to redirect conditionally
   redirectElement = () => {
     return this.state.submitted && <Redirect to="/posts" />;
   };
