@@ -9,21 +9,32 @@ class FullPost extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
-    let id = this.props.match.params.id;
-
-    if (id) {
-      if (
-        !this.state.loadedPost ||
-        (this.state.loadedPost && this.state.loadedPost.id !== id)
-      ) {
-        axios.get("/posts/" + id).then(response => {
-          // console.log(response);
-          this.setState({ loadedPost: response.data });
-        });
-      }
+    console.log("[FullPost]: Component Did Mount Fired!");
+    let id = +this.props.match.params.id;
+    const { loadedPost } = this.state;
+    if (id && (!loadedPost || (loadedPost && loadedPost.id !== id))) {
+      this.loadData(id);
     }
   }
+
+  /* Handles changing nested route to ensure component
+  re-renders 
+  */
+  componentDidUpdate() {
+    console.log("[FullPost]: Component Did Update Fired!");
+    let id = +this.props.match.params.id;
+    const { loadedPost } = this.state;
+    if (id && (!loadedPost || (loadedPost && loadedPost.id !== id))) {
+      this.loadData(id);
+    }
+  }
+
+  loadData = id => {
+    axios.get("/posts/" + id).then(response => {
+      // console.log(response);
+      this.setState({ loadedPost: response.data });
+    });
+  };
 
   deletePostHandler = () => {
     let id = this.props.match.params.id;
