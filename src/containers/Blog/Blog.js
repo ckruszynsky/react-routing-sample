@@ -13,12 +13,13 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/posts" exact activeClassName={styles.activeNav}>
+                <NavLink to="/posts" activeClassName={styles.activeNav}>
                   Posts
                 </NavLink>
               </li>
               <li>
                 <NavLink
+                  exact
                   activeClassName={styles.activeNav}
                   activeStyle={{
                     color: "#fa923f",
